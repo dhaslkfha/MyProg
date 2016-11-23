@@ -1,0 +1,39 @@
+android wear 开发前准备：
+1 重置手表系统 开机后会有 二维码配对
+2 手机扫描二维码 下载Android Wear中国版
+3 手表和手机进行配对 并且成功
+4 点开手表中的设置-> 关于 -> 版本号 -> 点击7次 开启开发者选项
+5 手表中进入开发者选项 ->开启ADB调试 -> 开启蓝牙调试
+6 手机中打开USB调试
+7 手机中进入 Android Wear软件 -> 设置 -> 要调试的设备 -> 通过蓝牙调试
+
+手机连接电脑 手表和手机蓝牙调试
+打开CMD 输入
+
+adb forward tcp:4444 localabstract:/adb-hub
+adb connect localhost:4444
+ps：如果出错 "由于目标 。。。计算机积极拒绝，无法连接。 (10061)" 尝试
+
+adb forward tcp:4444 127.0.0.1:/adb-hub
+adb connect localhost:4444
+显示connected to 127.0.0.1:4444 表示成功
+
+文／90后Geek（简书作者）
+原文链接：http://www.jianshu.com/p/8709642948d1
+著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。
+
+Mac adb 环境变量设置
+当你的Android studio刚安装到您的Mac电脑中的时候，你是没有办法直接在Terminal里面执行adb命令的，这是因为你并没有配置。会提示这个错误   bash: restart: command not found .所以下面让我们来配置ADB。
+1.如果你的电脑里面有.bash_profile文件，请直接转到5
+2.进入主页  命令：echo $HOME
+3.创建.bash_profile文件，命令：touch .bash_profile
+4.打开.bash_profile文件，命令：open -e .bash_profile
+
+5.在打开的编辑器里面键入 export PATH={你的sdk路径}/android/platform-tools/:$PATH
+6.保存，退出
+7.更新配置信息，命令：source .bash_profile
+
+8.测试运行 输入 adb，如果显示出来
+Android Debug Bridge version 1.0.35
+就说明成功了。
+http://blog.csdn.net/chaoyue0071/article/details/42192305
